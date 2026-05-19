@@ -26,6 +26,8 @@
   --muted: 28 30 38;
   --muted-foreground: 156 163 175;
 
+  --neutral: 113 110 110;
+
   --accent: 28 30 38;
   --accent-foreground: 245 245 245;
 
@@ -41,7 +43,7 @@
 }
 
 html {
-  font-family: "Hanken Grotesk Variable", sans-serif;
+  font-family: "Hanken Grotesk", sans-serif;
   background: rgb(var(--background));
   color: rgb(var(--foreground));
 }
@@ -54,11 +56,16 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+h1 {
+  font-size: 42px;
+  font-weight: 600;
+}
+
 h1,
 h2,
 h3,
 .book-title {
-  font-family: "Newsreader Variable", serif;
+  font-family: "Newsreader", serif;
   letter-spacing: -0.02em;
 }
 

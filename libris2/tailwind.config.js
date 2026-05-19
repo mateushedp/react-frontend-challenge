@@ -24,6 +24,8 @@ export default {
         muted: "rgb(var(--muted) / <alpha-value>)",
         "muted-foreground": "rgb(var(--muted-foreground) / <alpha-value>)",
 
+        neutral: "rgb(var(--neutral) / <alpha-value>)",
+
         border: "rgb(var(--border) / 0.1)",
         input: "rgb(var(--input) / 0.12)",
         ring: "rgb(var(--ring) / 0.3)",
@@ -36,8 +38,8 @@ export default {
       },
 
       fontFamily: {
-        sans: ["Hanken Grotesk Variable", ...defaultTheme.fontFamily.sans],
-        serif: ["Newsreader Variable", "serif"],
+        sans: ["Hanken Grotesk", ...defaultTheme.fontFamily.sans],
+        serif: ["Newsreader", "serif"],
       },
 
       boxShadow: {
