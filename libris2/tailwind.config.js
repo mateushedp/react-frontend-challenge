@@ -26,6 +26,8 @@ export default {
 
         neutral: "rgb(var(--neutral) / <alpha-value>)",
 
+        sidebar: "rgb(var(--sidebar) / <alpha-value>)",
+
         border: "rgb(var(--border) / 0.1)",
         input: "rgb(var(--input) / 0.12)",
         ring: "rgb(var(--ring) / 0.3)",

@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter, redirect } from '@tanstack/react-router'
 import { useAuthStore } from '../features/auth/model/store'
 import { LoginPage } from '@/pages/login'
+import { AppLayout } from './layouts/AppLayout'
 
 const rootRoute = createRootRoute()
 
@@ -12,39 +13,41 @@ const requireAuth = () => {
 const loginRoute = createRoute({
 	getParentRoute: () => rootRoute,
 	path: '/login',
-	// beforeLoad: () => {
-	// 	const { token } = useAuthStore.getState()
-	// 	if (token) throw redirect({ to: '/' })
-	// },
+	beforeLoad: () => {
+		const { token } = useAuthStore.getState()
+		if (token) throw redirect({ to: '/' })
+	},
 	component: LoginPage,
 })
 
-const searchRoute = createRoute({
+const protectedLayout = createRoute({
 	getParentRoute: () => rootRoute,
-	path: '/',
+	id: 'protected',
 	beforeLoad: requireAuth,
+	component: AppLayout,
+})
+
+const searchRoute = createRoute({
+	getParentRoute: () => protectedLayout,
+	path: '/',
 	component: () => <div>Busca</div>,
 })
 
 const shelfRoute = createRoute({
-	getParentRoute: () => rootRoute,
+	getParentRoute: () => protectedLayout,
 	path: '/shelf',
-	beforeLoad: requireAuth,
 	component: () => <div>Estante</div>,
 })
 
 const bookRoute = createRoute({
-	getParentRoute: () => rootRoute,
+	getParentRoute: () => protectedLayout,
 	path: '/book/$bookId',
-	beforeLoad: requireAuth,
 	component: () => <div>Detalhe do livro</div>,
 })
 
 const routeTree = rootRoute.addChildren([
 	loginRoute,
-	searchRoute,
-	shelfRoute,
-	bookRoute,
+	protectedLayout.addChildren([searchRoute, shelfRoute, bookRoute]),
 ])
 
 export const router = createRouter({ routeTree })
