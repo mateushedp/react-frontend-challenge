@@ -1,6 +1,7 @@
 import { createRootRoute, createRoute, createRouter, redirect } from '@tanstack/react-router'
 import { useAuthStore } from '../features/auth/model/store'
 import { LoginPage } from '@/pages/login'
+import { SearchPage } from '@/pages/search'
 import { AppLayout } from './layouts/AppLayout'
 
 const rootRoute = createRootRoute()
@@ -30,7 +31,7 @@ const protectedLayout = createRoute({
 const searchRoute = createRoute({
 	getParentRoute: () => protectedLayout,
 	path: '/',
-	component: () => <div>Busca</div>,
+	component: SearchPage,
 })
 
 const shelfRoute = createRoute({
