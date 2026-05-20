@@ -14,6 +14,9 @@ export interface GoogleBooksVolume {
 		publishedDate?: string
 		description?: string
 		publisher?: string
+		pageCount?: number
+		language?: string
+		industryIdentifiers?: { type: string; identifier: string }[]
 		imageLinks?: {
 			thumbnail?: string
 			smallThumbnail?: string
