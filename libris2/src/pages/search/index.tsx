@@ -7,6 +7,8 @@ import { SearchBar } from '@/features/search/ui/SearchBar'
 import { SearchFilters } from '@/widgets/search-filters'
 import { Spinner } from '@/shared/ui/Spinner'
 import { BookX } from 'lucide-react'
+import { toast } from 'sonner'
+
 
 export function SearchPage() {
 	const [query, setQuery] = useState('')
@@ -15,7 +17,7 @@ export function SearchPage() {
 	const debouncedQuery = useDebounce(query, 500)
 	const effectiveQuery = debouncedQuery.length > 2 ? debouncedQuery : 'fiction'
 
-	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useBookSearch({
+	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = useBookSearch({
 		query: effectiveQuery,
 		printType,
 		orderBy,
@@ -38,6 +40,10 @@ export function SearchPage() {
 		if (sentinelRef.current) observer.observe(sentinelRef.current)
 		return () => observer.disconnect()
 	}, [hasNextPage, isFetchingNextPage, fetchNextPage])
+
+	useEffect(() => {
+		if (isError) toast.error('Erro ao buscar livros. Tente novamente.')
+	}, [isError])
 
 	return (
 		<div className="p-8">
