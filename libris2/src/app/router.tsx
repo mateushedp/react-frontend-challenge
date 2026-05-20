@@ -2,6 +2,7 @@ import { createRootRoute, createRoute, createRouter, redirect } from '@tanstack/
 import { useAuthStore } from '../features/auth/model/store'
 import { LoginPage } from '@/pages/login'
 import { SearchPage } from '@/pages/search'
+import { BookDetailPage } from '@/pages/book-detail'
 import { AppLayout } from './layouts/AppLayout'
 
 const rootRoute = createRootRoute()
@@ -43,7 +44,7 @@ const shelfRoute = createRoute({
 const bookRoute = createRoute({
 	getParentRoute: () => protectedLayout,
 	path: '/book/$bookId',
-	component: () => <div>Detalhe do livro</div>,
+	component: BookDetailPage,
 })
 
 const routeTree = rootRoute.addChildren([
