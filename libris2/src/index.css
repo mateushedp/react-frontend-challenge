@@ -38,10 +38,17 @@
   --ring: 245 245 245;
 
   --radius: 0.25rem;
+  --destructive: 220 38 38;
+  --destructive-foreground: 245 245 245;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 html {
