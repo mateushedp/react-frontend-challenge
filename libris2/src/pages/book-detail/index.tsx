@@ -1,5 +1,6 @@
 import { useParams, Link } from '@tanstack/react-router'
 import { useBookDetail } from '@/features/search/model/useBookDetail'
+import { useShelfStore } from '@/entities/shelf/model/store'
 import { BookOpen, ArrowLeft, ExternalLink, Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BookDetailSkeleton } from '@/features/book/ui/BookDetailSkeleton'
@@ -7,6 +8,9 @@ import { BookDetailSkeleton } from '@/features/book/ui/BookDetailSkeleton'
 export function BookDetailPage() {
 	const { bookId } = useParams({ strict: false })
 	const { data: book, isLoading, isError } = useBookDetail(bookId)
+	const { addBook, removeBook, isInShelf } = useShelfStore()
+
+	const inShelf = isInShelf(bookId)
 
 	if (isLoading) return <BookDetailSkeleton />
 
@@ -44,8 +48,13 @@ export function BookDetailPage() {
 						)}
 					</div>
 
-					<Button variant="outline" className="w-full gap-2">
-						<Bookmark size={16} /> Adicionar à Estante
+					<Button
+						variant="outline"
+						className="w-full gap-2"
+						onClick={() => inShelf ? removeBook(book.id) : addBook(book)}
+					>
+						<Bookmark size={16} className={inShelf ? 'fill-current' : ''} />
+						{inShelf ? 'Remover da Estante' : 'Adicionar à Estante'}
 					</Button>
 
 					{book.previewLink && (
