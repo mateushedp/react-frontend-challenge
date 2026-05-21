@@ -3,6 +3,7 @@ import { useAuthStore } from '../features/auth/model/store'
 import { LoginPage } from '@/pages/login'
 import { SearchPage } from '@/pages/search'
 import { BookDetailPage } from '@/pages/book-detail'
+import { ShelfPage } from '@/pages/shelf'
 import { AppLayout } from './layouts/AppLayout'
 
 const rootRoute = createRootRoute()
@@ -38,7 +39,7 @@ const searchRoute = createRoute({
 const shelfRoute = createRoute({
 	getParentRoute: () => protectedLayout,
 	path: '/shelf',
-	component: () => <div>Estante</div>,
+	component: ShelfPage,
 })
 
 const bookRoute = createRoute({
