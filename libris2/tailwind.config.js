@@ -31,6 +31,8 @@ export default {
         border: "rgb(var(--border) / 0.1)",
         input: "rgb(var(--input) / 0.12)",
         ring: "rgb(var(--ring) / 0.3)",
+        destructive: 'rgb(var(--destructive))',
+        'destructive-foreground': 'rgb(var(--destructive-foreground))',
       },
 
       borderRadius: {
