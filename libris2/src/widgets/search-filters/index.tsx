@@ -27,10 +27,10 @@ const orderByOptions = [
 export function SearchFilters({ printType, orderBy, onPrintTypeChange, onOrderByChange }: SearchFiltersProps) {
 	return (
 		<div className="flex gap-4 mt-4">
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-2 flex-1">
 				<span className="text-xs uppercase tracking-widest text-muted-foreground">Tipo de mídia</span>
 				<Select value={printType} onValueChange={onPrintTypeChange}>
-					<SelectTrigger className="w-[160px]">
+					<SelectTrigger className="w-full">
 						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>
@@ -43,10 +43,10 @@ export function SearchFilters({ printType, orderBy, onPrintTypeChange, onOrderBy
 				</Select>
 			</div>
 
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col gap-2 flex-1">
 				<span className="text-xs uppercase tracking-widest text-muted-foreground">Ordenar por</span>
 				<Select value={orderBy} onValueChange={onOrderByChange}>
-					<SelectTrigger className="w-[160px]">
+					<SelectTrigger className="w-full">
 						<SelectValue />
 					</SelectTrigger>
 					<SelectContent>
