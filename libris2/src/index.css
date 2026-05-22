@@ -1,0 +1,122 @@
+@import "@fontsource-variable/newsreader";
+@import "@fontsource-variable/hanken-grotesk";
+@import "tw-animate-css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* COLORS */
+  --background: 10 12 18;
+  --foreground: 245 245 245;
+
+  --card: 20 22 30;
+  --card-foreground: 245 245 245;
+
+  --popover: 20 22 30;
+  --popover-foreground: 245 245 245;
+
+  --primary: 245 245 245;
+  --primary-foreground: 10 12 18;
+
+  --secondary: 94 99 126;
+  --secondary-foreground: 245 245 245;
+
+  --muted: 28 30 38;
+  --muted-foreground: 156 163 175;
+
+  --neutral: 113 110 110;
+
+  --sidebar: 26 28 38;
+
+  --accent: 28 30 38;
+  --accent-foreground: 245 245 245;
+
+  --border: 255 255 255;
+  --input: 255 255 255;
+  --ring: 245 245 245;
+
+  --radius: 0.25rem;
+  --destructive: 220 38 38;
+  --destructive-foreground: 245 245 245;
+  --nav-active: 245 245 245;
+}
+
+.light {
+  --background: 238 236 230;
+  --foreground: 18 20 28;
+
+  --card: 230 228 222;
+  --card-foreground: 18 20 28;
+
+  --popover: 230 228 222;
+  --popover-foreground: 18 20 28;
+
+  --primary: 18 20 28;
+  --primary-foreground: 242 240 235;
+
+  --secondary: 94 99 126;
+  --secondary-foreground: 242 240 235;
+
+  --muted: 214 212 204;
+  --muted-foreground: 92 96 118;
+
+  --neutral: 113 110 110;
+
+  --sidebar: 218 214 204;
+
+  --accent: 208 205 196;
+  --accent-foreground: 18 20 28;
+
+  --border: 18 20 28;
+  --input: 218 214 204;
+  --ring: 18 20 28;
+  --nav-active: 18 20 28;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+html {
+  font-family: "Hanken Grotesk", sans-serif;
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3,
+.book-title {
+  font-family: "Newsreader", serif;
+  letter-spacing: -0.02em;
+}
+
+.cn-toast {
+  --normal-bg: rgb(var(--sidebar));
+  --normal-text: rgb(var(--popover-foreground));
+  --normal-border: rgba(var(--border) / 0.15);
+}
+
+::selection {
+  background: rgba(255,255,255,0.12);
+}
