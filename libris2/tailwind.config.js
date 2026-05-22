@@ -33,6 +33,7 @@ export default {
         ring: "rgb(var(--ring) / 0.3)",
         destructive: 'rgb(var(--destructive))',
         'destructive-foreground': 'rgb(var(--destructive-foreground))',
+        'nav-active': 'rgb(var(--nav-active))',
       },
 
       borderRadius: {
