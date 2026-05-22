@@ -25,14 +25,14 @@ export function BookDetailPage() {
 
 	return (
 		<div className="p-6 md:p-12 max-w-6xl mx-auto">
-			<Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
+			<Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
 				<ArrowLeft size={16} />
 				Voltar
 			</Link>
 
-			<div className="flex flex-col md:flex-row gap-8 md:gap-16">
+			<div className="flex flex-col md:flex-row gap-4 md:gap-16">
 				{/* Capa */}
-				<div className="w-[250px] md:w-[260px] self-center md:self-auto shrink-0 flex flex-col gap-4">
+				<div className="w-[160px] md:w-[260px] self-center md:self-auto shrink-0 flex flex-col gap-4">
 					<div className="w-full aspect-[2/3] overflow-hidden bg-muted flex items-center justify-center">
 						{book.thumbnail ? (
 							<img
@@ -49,41 +49,75 @@ export function BookDetailPage() {
 						)}
 					</div>
 
-					<Button
-						variant="outline"
-						className="w-full gap-2"
-						onClick={() => {
-							if (inShelf) {
-								removeBook(book.id)
-								toast.success('Livro removido da estante.')
-							} else {
-								addBook(book)
-								toast.success('Livro adicionado à estante.')
-							}
-						}}
-					>
-						<Bookmark size={16} className={inShelf ? 'fill-current' : ''} />
-						{inShelf ? 'Remover da Estante' : 'Adicionar à Estante'}
-					</Button>
-
-					{book.previewLink && (
-						<a
-							href={book.previewLink}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+					{/* Ações — visíveis só no desktop */}
+					<div className="hidden md:flex flex-col gap-4">
+						<Button
+							variant="outline"
+							className="w-full gap-2"
+							onClick={() => {
+								if (inShelf) {
+									removeBook(book.id)
+									toast.success('Livro removido da estante.')
+								} else {
+									addBook(book)
+									toast.success('Livro adicionado à estante.')
+								}
+							}}
 						>
-							<ExternalLink size={14} />
-							Ver preview
-						</a>
-					)}
+							<Bookmark size={16} className={inShelf ? 'fill-current' : ''} />
+							{inShelf ? 'Remover da Estante' : 'Adicionar à Estante'}
+						</Button>
+
+						{book.previewLink && (
+							<a
+								href={book.previewLink}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+							>
+								<ExternalLink size={14} />
+								Ver preview
+							</a>
+						)}
+					</div>
 				</div>
 
 				{/* Informações */}
-				<div className="flex flex-col gap-8 flex-1">
+				<div className="flex flex-col gap-8 mt-4 md:mt-0 flex-1">
 					<div>
 						<h1 className="text-3xl md:text-4xl mb-2">{book.title}</h1>
 						<p className="text-muted-foreground">{book.authors.join(', ')}</p>
+					</div>
+
+					<div className="flex flex-col gap-4 md:hidden">
+						<Button
+							variant="outline"
+							className="w-full gap-2"
+							onClick={() => {
+								if (inShelf) {
+									removeBook(book.id)
+									toast.success('Livro removido da estante.')
+								} else {
+									addBook(book)
+									toast.success('Livro adicionado à estante.')
+								}
+							}}
+						>
+							<Bookmark size={16} className={inShelf ? 'fill-current' : ''} />
+							{inShelf ? 'Remover da Estante' : 'Adicionar à Estante'}
+						</Button>
+
+						{book.previewLink && (
+							<a
+								href={book.previewLink}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="flex items-center justify-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+							>
+								<ExternalLink size={14} />
+								Ver preview
+							</a>
+						)}
 					</div>
 
 					<div className="flex flex-wrap gap-8 border-t border-b border-border py-6">
@@ -120,7 +154,7 @@ export function BookDetailPage() {
 						<p className="text-sm leading-relaxed text-muted-foreground text-justify">{book.description}</p>
 					</div>
 				</div>
-			</div>
+			</div >
 		</div >
 	)
 }
