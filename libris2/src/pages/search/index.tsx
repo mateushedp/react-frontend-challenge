@@ -15,22 +15,31 @@ export function SearchPage() {
 	const [printType, setPrintType] = useState('all')
 	const [orderBy, setOrderBy] = useState('relevance')
 	const debouncedQuery = useDebounce(query, 500)
-	const effectiveQuery = debouncedQuery.length > 2 ? debouncedQuery : 'fiction'
+	const isSearching = debouncedQuery.length > 2
 
-	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = useBookSearch({
+	const effectiveQuery = isSearching ? debouncedQuery : 'subject:fiction'
+
+	const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isLoading, isError } = useBookSearch({
 		query: effectiveQuery,
 		printType,
 		orderBy,
 	})
 
-	const books = data?.pages.flatMap((page) => page.books) ?? []
+	const books = Array.from(
+		new Map(
+			(data?.pages.flatMap((page) => page.books) ?? []).map((book) => [
+				book.id,
+				book,
+			])
+		).values()
+	)
 
 	const sentinelRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
-				if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+				if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage && !isLoading) {
 					fetchNextPage()
 				}
 			},
@@ -39,7 +48,7 @@ export function SearchPage() {
 
 		if (sentinelRef.current) observer.observe(sentinelRef.current)
 		return () => observer.disconnect()
-	}, [hasNextPage, isFetchingNextPage, fetchNextPage])
+	}, [hasNextPage, isFetchingNextPage, fetchNextPage, isLoading])
 
 	useEffect(() => {
 		if (isError) toast.error('Erro ao buscar livros. Tente novamente.')
@@ -55,14 +64,14 @@ export function SearchPage() {
 				onOrderByChange={setOrderBy}
 			/>
 
-			<div className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
+			<div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
 				{isLoading
 					? Array.from({ length: 12 }).map((_, i) => <BookCardSkeleton key={i} />)
 					: books.map((book) => <BookCard key={book.id} book={book} />)
 				}
 			</div>
 
-			{!isLoading && books.length === 0 && (
+			{isSearching && !isLoading && !isFetching && books.length === 0 && (
 				<div className="flex flex-col items-center gap-3 py-16 text-muted-foreground">
 					<BookX size={40} />
 					<p className="text-sm">Nenhum livro encontrado para sua busca.</p>
