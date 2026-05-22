@@ -11,7 +11,7 @@
 ## Instalação
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/mateushedp/react-frontend-challenge
 cd libris
 npm install
 ```
