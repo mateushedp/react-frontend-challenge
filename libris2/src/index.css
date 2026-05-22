@@ -41,40 +41,38 @@
   --destructive: 220 38 38;
   --destructive-foreground: 245 245 245;
   --nav-active: 245 245 245;
-  --input: 26 28 38;
 }
 
 .light {
-  --background: 242 240 235;
-  --foreground: 10 12 18;
+  --background: 238 236 230;
+  --foreground: 18 20 28;
 
-  --card: 234 232 226;
-  --card-foreground: 10 12 18;
+  --card: 230 228 222;
+  --card-foreground: 18 20 28;
 
-  --popover: 234 232 226;
-  --popover-foreground: 10 12 18;
+  --popover: 230 228 222;
+  --popover-foreground: 18 20 28;
 
-  --primary: 10 12 18;
+  --primary: 18 20 28;
   --primary-foreground: 242 240 235;
 
   --secondary: 94 99 126;
   --secondary-foreground: 242 240 235;
 
-  --muted: 220 218 210;
-  --muted-foreground: 94 99 126;
+  --muted: 214 212 204;
+  --muted-foreground: 92 96 118;
 
   --neutral: 113 110 110;
 
-  --sidebar: 228 226 218;
+  --sidebar: 218 214 204;
 
-  --accent: 220 218 210;
-  --accent-foreground: 10 12 18;
+  --accent: 208 205 196;
+  --accent-foreground: 18 20 28;
 
-  --border: 10 12 18;
-  --input: 10 12 18;
-  --ring: 10 12 18;
-  --nav-active: 10 12 18;
-  --input: 228 226 218;
+  --border: 18 20 28;
+  --input: 218 214 204;
+  --ring: 18 20 28;
+  --nav-active: 18 20 28;
 }
 
 * {
@@ -111,6 +109,12 @@ h3,
 .book-title {
   font-family: "Newsreader", serif;
   letter-spacing: -0.02em;
+}
+
+.cn-toast {
+  --normal-bg: rgb(var(--sidebar));
+  --normal-text: rgb(var(--popover-foreground));
+  --normal-border: rgba(var(--border) / 0.15);
 }
 
 ::selection {

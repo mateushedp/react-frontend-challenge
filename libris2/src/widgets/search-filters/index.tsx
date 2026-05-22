@@ -26,7 +26,7 @@ const orderByOptions = [
 
 export function SearchFilters({ printType, orderBy, onPrintTypeChange, onOrderByChange }: SearchFiltersProps) {
 	return (
-		<div className="flex gap-4 mt-4">
+		<div className="flex gap-4 mt-4 w-full md:w-1/2">
 			<div className="flex flex-col gap-2 flex-1">
 				<span className="text-xs uppercase tracking-widest text-muted-foreground">Tipo de mídia</span>
 				<Select value={printType} onValueChange={onPrintTypeChange}>

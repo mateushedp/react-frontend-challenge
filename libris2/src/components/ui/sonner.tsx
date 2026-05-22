@@ -7,6 +7,8 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
+      position="top-center"
+      visibleToasts={1}
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       icons={{
@@ -26,14 +28,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
           <Loader2Icon className="size-4 animate-spin" />
         ),
       }}
-      style={
-        {
-          "--toast-bg": "var(--popover)",
-          "--toast-text": "var(--popover-foreground)",
-          "--toast-border": "var(--border)",
-        } as React.CSSProperties
-      }
-
 
       toastOptions={{
         classNames: {

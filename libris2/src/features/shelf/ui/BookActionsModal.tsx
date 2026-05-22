@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { MoreVertical, Trash2 } from 'lucide-react'
+import { toast } from 'sonner'
 import {
 	Dialog,
 	DialogContent,
@@ -22,7 +23,21 @@ export function BookActionsModal({ book }: BookActionsModalProps) {
 
 	const handleRemove = () => {
 		removeBook(book.id)
+		toast.success('Livro removido da estante.')
 		setOpen(false)
+	}
+
+	const handleStatusChange = (status: ShelfStatus) => {
+		updateStatus(book.id, status)
+
+		toast.success(
+			`Status atualizado para "${status === 'want-to-read'
+				? 'Quero ler'
+				: status === 'reading'
+					? 'Lendo'
+					: 'Concluído'
+			}".`
+		)
 	}
 
 	return (
@@ -32,8 +47,8 @@ export function BookActionsModal({ book }: BookActionsModalProps) {
 					<MoreVertical size={16} />
 				</button>
 			</DialogTrigger>
-			<DialogContent className="w-full max-w-[calc(100vw-2rem)] md:max-w-sm bg-[rgb(var(--card))] border border-white/10 overflow-x-hidden">
-				<DialogHeader className="flex min-w-0 flex-row items-center gap-3 space-y-0">
+			<DialogContent className="w-[calc(100%-2rem)] max-w-sm bg-[rgb(var(--card))] border border-white/10">
+				<DialogHeader className="flex flex-row items-center gap-3 space-y-0">
 					<div className="w-10 h-16 bg-muted rounded-sm overflow-hidden flex-shrink-0">
 						{book.thumbnail && (
 							<img
@@ -44,7 +59,7 @@ export function BookActionsModal({ book }: BookActionsModalProps) {
 						)}
 					</div>
 
-					<div className="min-w-0 flex-1">
+					<div className="min-w-0">
 						<DialogTitle className="text-base line-clamp-2 leading-snug">
 							{book.title}
 						</DialogTitle>
@@ -63,7 +78,7 @@ export function BookActionsModal({ book }: BookActionsModalProps) {
 
 						<StatusSelect
 							value={book.status}
-							onChange={(s: ShelfStatus) => updateStatus(book.id, s)}
+							onChange={handleStatusChange}
 						/>
 					</div>
 

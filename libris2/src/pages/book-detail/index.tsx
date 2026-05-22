@@ -4,6 +4,7 @@ import { useShelfStore } from '@/entities/shelf/model/store'
 import { BookOpen, ArrowLeft, ExternalLink, Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BookDetailSkeleton } from '@/features/book/ui/BookDetailSkeleton'
+import { toast } from 'sonner'
 
 export function BookDetailPage() {
 	const { bookId } = useParams({ strict: false })
@@ -31,7 +32,7 @@ export function BookDetailPage() {
 
 			<div className="flex flex-col md:flex-row gap-8 md:gap-16">
 				{/* Capa */}
-				<div className="flex flex-col gap-4 md:w-[260px] shrink-0">
+				<div className="w-[250px] md:w-[260px] self-center md:self-auto shrink-0 flex flex-col gap-4">
 					<div className="w-full aspect-[2/3] overflow-hidden bg-muted flex items-center justify-center">
 						{book.thumbnail ? (
 							<img
@@ -51,7 +52,15 @@ export function BookDetailPage() {
 					<Button
 						variant="outline"
 						className="w-full gap-2"
-						onClick={() => inShelf ? removeBook(book.id) : addBook(book)}
+						onClick={() => {
+							if (inShelf) {
+								removeBook(book.id)
+								toast.success('Livro removido da estante.')
+							} else {
+								addBook(book)
+								toast.success('Livro adicionado à estante.')
+							}
+						}}
 					>
 						<Bookmark size={16} className={inShelf ? 'fill-current' : ''} />
 						{inShelf ? 'Remover da Estante' : 'Adicionar à Estante'}
@@ -77,7 +86,7 @@ export function BookDetailPage() {
 						<p className="text-muted-foreground">{book.authors.join(', ')}</p>
 					</div>
 
-					<div className="flex flex-wrap gap-8 border-t border-b border-white/10 py-6">
+					<div className="flex flex-wrap gap-8 border-t border-b border-border py-6">
 						{book.publishedDate && (
 							<div className="flex flex-col gap-1">
 								<span className="text-xs uppercase tracking-widest text-muted-foreground">Publicado em</span>
