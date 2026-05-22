@@ -11,6 +11,7 @@ import { ChevronUp, ChevronDown } from 'lucide-react'
 import type { ShelfBook } from '@/entities/shelf/model/store'
 import { StatusBadge } from './StatusBadge'
 import { BookActionsModal } from './BookActionsModal'
+import { Link } from '@tanstack/react-router'
 
 const columnHelper = createColumnHelper<ShelfBook>()
 
@@ -22,21 +23,29 @@ export function ShelfTable({ books }: { books: ShelfBook[] }) {
 			id: 'thumbnail',
 			header: 'Capa',
 			cell: ({ row }) => (
-				<div className="w-9 h-14 bg-muted rounded-sm overflow-hidden flex-shrink-0">
-					{row.original.thumbnail ? (
-						<img
-							src={row.original.thumbnail}
-							alt={row.original.title}
-							className="w-full h-full object-cover"
-						/>
-					) : null}
-				</div>
+				<Link to="/book/$bookId" params={{ bookId: row.original.id }}>
+					<div className="w-9 h-14 bg-muted rounded-sm overflow-hidden flex-shrink-0">
+						{row.original.thumbnail ? (
+							<img
+								src={row.original.thumbnail}
+								alt={row.original.title}
+								className="w-full h-full object-cover hover:opacity-80 transition-opacity"
+							/>
+						) : null}
+					</div>
+				</Link>
 			),
 		}),
 		columnHelper.accessor('title', {
 			header: 'Título',
-			cell: ({ getValue }) => (
-				<span className="text-sm font-medium">{getValue()}</span>
+			cell: ({ row }) => (
+				<Link
+					to="/book/$bookId"
+					params={{ bookId: row.original.id }}
+					className="text-sm font-medium hover:underline"
+				>
+					{row.original.title}
+				</Link>
 			),
 		}),
 		columnHelper.accessor('authors', {
