@@ -12,20 +12,21 @@ export function LoginPage() {
 		<div className="min-h-screen flex">
 			<div className="hidden md:block md:w-[60%] relative overflow-hidden">
 				<div
-					className="absolute inset-0 bg-cover bg-center opacity-40 scale-105"
+					className="absolute inset-0 bg-cover bg-center scale-105"
 					style={{
 						backgroundImage: `url(${libraryBg})`,
+						filter: 'brightness(0.6)'
 					}}
 				/>
 
-				<div className="absolute inset-0 bg-black/10" />
+				<div className="absolute inset-0 bg-black/30" />
 
 				<div className="absolute top-10 left-10 z-10 flex flex-col">
 					<h1 className="text-4xl font-semibold text-white leading-none">
 						Libris
 					</h1>
 
-					<span className="text-sm uppercase text-neutral mt-1">
+					<span className="text-sm uppercase text-white/60 mt-1">
 						santuário digital
 					</span>
 				</div>
@@ -66,7 +67,7 @@ export function LoginPage() {
 										onChange={(e) => field.handleChange(e.target.value)}
 										onBlur={field.handleBlur}
 										type='email'
-										className="placeholder:text-neutral"
+										className="placeholder:text-neutral bg-sidebar"
 									/>
 
 									{field.state.meta.errors[0] && (
@@ -94,7 +95,7 @@ export function LoginPage() {
 										value={field.state.value}
 										onChange={(e) => field.handleChange(e.target.value)}
 										onBlur={field.handleBlur}
-										className="placeholder:text-neutral"
+										className="placeholder:text-neutral bg-sidebar"
 									/>
 
 									{field.state.meta.errors[0] && (

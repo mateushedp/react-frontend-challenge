@@ -105,7 +105,7 @@ export function BookDetailPage() {
 					</div>
 
 					<div className="flex flex-col gap-3">
-						<span className="text-xs uppercase tracking-widest text-muted-foreground border-l-2 border-white/20 pl-3">
+						<span className="text-xs uppercase tracking-widest text-muted-foreground border-l-2 border-foreground/20 pl-3">
 							Sinopse
 						</span>
 						<p className="text-sm leading-relaxed text-muted-foreground text-justify">{book.description}</p>
